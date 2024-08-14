@@ -37,7 +37,6 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-// Similar adjustments in updateTask method
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();

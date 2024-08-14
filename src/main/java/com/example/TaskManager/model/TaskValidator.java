@@ -6,23 +6,19 @@ import java.util.List;
 
 public class TaskValidator {
 
-    // Valid status values
     private static final List<String> VALID_STATUSES = Arrays.asList("Pending", "In Progress", "Completed");
 
-    // Method to validate the Task object
     public static void validateTask(Task task) {
         validateTitle(task.getTitle());
         validateStatus(task.getStatus());
     }
 
-    // Validate that the title is not null or empty
     public static void validateTitle(String title) {
         if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Title is mandatory and cannot be null or empty.");
         }
     }
 
-    // Validate that the status is one of the predefined valid values
     public static void validateStatus(String status) {
         if (!VALID_STATUSES.contains(status)) {
             throw new IllegalArgumentException("Status must be one of the following: " + VALID_STATUSES);

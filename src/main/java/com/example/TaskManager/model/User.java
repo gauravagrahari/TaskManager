@@ -21,6 +21,4 @@ public class User {
     private String timezone;
     private Boolean isActive;
 
-    // Getters and Setters
-    // ...
 }
