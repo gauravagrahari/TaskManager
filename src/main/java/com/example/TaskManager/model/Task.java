@@ -1,11 +1,17 @@
 package com.example.TaskManager.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "tasks")
 public class Task {
