@@ -13,10 +13,6 @@ public class UserService {
     @Autowired
  UserRepository userRepository;
 
-//    @Autowired
-//    public UserService(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
 
     public User createUser(User user) {
         return userRepository.save(user);

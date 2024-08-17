@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Entity
 @Data
+@Table(name = "tasks")
 public class Task {
 
     @Id
@@ -16,4 +17,5 @@ public class Task {
     private String status;
     private Date createdAt;
     private Date updatedAt;
+    private long userId;
 }

@@ -3,11 +3,9 @@ package com.example.TaskManager.controller;
 import com.example.TaskManager.model.Task;
 import com.example.TaskManager.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tasks")

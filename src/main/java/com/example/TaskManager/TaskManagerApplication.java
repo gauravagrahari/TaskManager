@@ -8,7 +8,7 @@ public class TaskManagerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TaskManagerApplication.class, args);
-		System.out.println("hey");
+		System.out.println("Server is running");
 	}
 
 }

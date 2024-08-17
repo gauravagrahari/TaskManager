@@ -1,17 +1,11 @@
 package com.example.TaskManager.service;
 
 import com.example.TaskManager.model.Task;
-import com.example.TaskManager.model.TaskValidator;
-import com.example.TaskManager.model.User;
 import com.example.TaskManager.repository.TaskRepository;
 import com.example.TaskManager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
-import java.util.Optional;
 import java.util.NoSuchElementException;
 
 @Service
