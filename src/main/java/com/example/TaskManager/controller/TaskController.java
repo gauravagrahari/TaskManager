@@ -12,17 +12,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
-
-    private final TaskService taskService;
-
-    @Autowired
-    public TaskController(TaskService taskService) {
-        this.taskService = taskService;
-    }
+     @Autowired
+     TaskService taskService;
 
     @PostMapping
-    public Task createTask(@RequestBody Task task,@PathVariable Long id) {
-        return taskService.createTask(task,id);
+    public Task createTask(@RequestBody Task task) {
+        return taskService.createTask(task);
     }
 
     @GetMapping
@@ -31,24 +26,18 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
-        Optional<Task> task = taskService.getTaskById(id);
-        return task.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public Task getTaskById(@PathVariable Long id) {
+        return taskService.getTaskById(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task updatedTask) {
-        try {
-            Task task = taskService.updateTask(id, updatedTask);
-            return ResponseEntity.ok(task);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public Task updateTask(@PathVariable long id, @RequestBody Task task) {
+        return taskService.updateTask(id,task);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+    public String deleteTask(@PathVariable long id) {
         taskService.deleteTask(id);
-        return ResponseEntity.noContent().build();
+        return "Delete Successful";
     }
 }

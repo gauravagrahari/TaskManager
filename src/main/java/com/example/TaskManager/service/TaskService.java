@@ -25,15 +25,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task createTask(Task task, Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new NoSuchElementException("User not found"));
-        task.setAssignedTo(user);
-
-        // Set time in UTC based on the user's timezone or provided timezone
-        LocalDateTime utcTime = LocalDateTime.now(ZoneId.of("UTC"));
-        task.setCreatedAt(utcTime);
-        task.setUpdatedAt(utcTime);
-
+    public Task createTask(Task task){
         return taskRepository.save(task);
     }
 
@@ -42,18 +34,18 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Optional<Task> getTaskById(Long id) {
-        return Optional.ofNullable(taskRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Task not found")));
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id).get();
     }
 
-    public Task updateTask(Long id, Task updatedTask) {
-        TaskValidator.validateTask(updatedTask); // Validate before updating
-        return taskRepository.findById(id).map(task -> {
-            task.setTitle(updatedTask.getTitle());
-            task.setDescription(updatedTask.getDescription());
-            task.setStatus(updatedTask.getStatus());
-            return taskRepository.save(task);
-        }).orElseThrow(() -> new NoSuchElementException("Task not found"));
+    public Task updateTask(long id,Task task){
+        Task retrievedTask = taskRepository.findById(id).get();
+        retrievedTask.setDescription(task.getDescription());
+        retrievedTask.setTitle(task.getTitle());
+        retrievedTask.setCreatedAt(task.getCreatedAt());
+        retrievedTask.setUpdatedAt(task.getUpdatedAt());
+        retrievedTask.setStatus(task.getStatus());
+        return taskRepository.save(retrievedTask);
     }
 
     public void deleteTask(Long id) {
